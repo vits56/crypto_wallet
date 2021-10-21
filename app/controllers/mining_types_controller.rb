@@ -1,12 +1,14 @@
 class MiningTypesController < ApplicationController
-  before_action :set_mining_type, only: %i[ show edit update destroy ]
+  before_action :set_mining_type, only: [:show, :edit, :update, :destroy]
 
-  # GET /mining_types or /mining_types.json
+  # GET /mining_types
+  # GET /mining_types.json
   def index
     @mining_types = MiningType.all
   end
 
-  # GET /mining_types/1 or /mining_types/1.json
+  # GET /mining_types/1
+  # GET /mining_types/1.json
   def show
   end
 
@@ -19,39 +21,42 @@ class MiningTypesController < ApplicationController
   def edit
   end
 
-  # POST /mining_types or /mining_types.json
+  # POST /mining_types
+  # POST /mining_types.json
   def create
     @mining_type = MiningType.new(mining_type_params)
 
     respond_to do |format|
       if @mining_type.save
-        format.html { redirect_to @mining_type, notice: "Mining type was successfully created." }
+        format.html { redirect_to @mining_type, notice: 'Mining type was successfully created.' }
         format.json { render :show, status: :created, location: @mining_type }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new }
         format.json { render json: @mining_type.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /mining_types/1 or /mining_types/1.json
+  # PATCH/PUT /mining_types/1
+  # PATCH/PUT /mining_types/1.json
   def update
     respond_to do |format|
       if @mining_type.update(mining_type_params)
-        format.html { redirect_to @mining_type, notice: "Mining type was successfully updated." }
+        format.html { redirect_to @mining_type, notice: 'Mining type was successfully updated.' }
         format.json { render :show, status: :ok, location: @mining_type }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit }
         format.json { render json: @mining_type.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /mining_types/1 or /mining_types/1.json
+  # DELETE /mining_types/1
+  # DELETE /mining_types/1.json
   def destroy
     @mining_type.destroy
     respond_to do |format|
-      format.html { redirect_to mining_types_url, notice: "Mining type was successfully destroyed." }
+      format.html { redirect_to mining_types_url, notice: 'Mining type was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -62,7 +67,7 @@ class MiningTypesController < ApplicationController
       @mining_type = MiningType.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Never trust parameters from the scary internet, only allow the white list through.
     def mining_type_params
       params.require(:mining_type).permit(:description, :acronym)
     end

@@ -7,7 +7,6 @@ namespace :dev do
       show_spinner("Migrando BD...") { %x(rails db:migrate) }
       %x(rails dev:add_mining_types)
       %x(rails dev:add_coins)
-      
     else
       puts "Você não está em ambiente de desenvolvimento!"
     end
@@ -39,7 +38,7 @@ namespace :dev do
                   description: "Iota",
                   acronym: "IOT",
                   url_image: "https://s2.coinmarketcap.com/static/img/coins/200x200/1720.png",
-                  mining_type: MiningType.all.sample 
+                  mining_type: MiningType.all.sample
                 },
                 { 
                   description: "ZCash",
